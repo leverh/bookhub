@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://bookhub-rdf-api-9aad7672239c.herokuapp.com/'
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://ErrorCodes.pythonanywhere.com/';
 axios.defaults.withCredentials = true
 
 export const axiosReq = axios.create({

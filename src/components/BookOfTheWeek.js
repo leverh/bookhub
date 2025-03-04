@@ -31,7 +31,7 @@ function BookOfTheWeek({ book }) {
 // Function to fetch the book of the week from the backend
 const fetchBookOfTheWeek = async () => {
   try {
-    const response = await axios.get('https://bookhub-rdf-api-9aad7672239c.herokuapp.com/book-of-the-week/');
+    const response = await axios.get('book-of-the-week/');
     return response.data;
   } catch (error) {
     console.error("Error fetching book of the week:", error);

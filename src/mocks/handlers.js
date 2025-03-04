@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-const baseURL = "https://bookhub-rdf-api-9aad7672239c.herokuapp.com/";
+const baseURL = process.env.REACT_APP_API_URL || 'https://ErrorCodes.pythonanywhere.com/';
 export const handlers = [
   rest.get(`${baseURL}dj-rest-auth/user/`, (req, res, ctx) => {
     return res(
