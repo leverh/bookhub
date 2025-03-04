@@ -1,0 +1,74 @@
+/* colors: 
+Background: #F2E6D3
+Text: #333333
+Buttons: #B07D28
+Hover:  underline: #FFA500 color:#444444
+Accents: #15DBDB 
+
+*/
+
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+  font-size: 62.5% !important;
+}
+
+.App {
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    background-color: #F2E6D3;
+    color: #333333;
+}
+
+.Main {
+    padding-top: 5rem;
+}
+
+.Content {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #dcd8d0;
+  }
+  
+  .FillerImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .Image {
+    max-height: 40vh;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+  
+  
+  figure {
+    text-align: center;
+    display: inline-block;
+  }
+  
+  /* scrollbar */
+*::-webkit-scrollbar {
+  width: 10px; 
+}
+*::-webkit-scrollbar-track {
+  background: #f4f1ea; 
+}
+*::-webkit-scrollbar-thumb {
+  background: #825343; 
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: #5d5b53; 
+}

@@ -1,0 +1,54 @@
+.modalContent, 
+.modalContent h4, 
+.modalContent p, 
+.modalContent a {
+    color: #333333;
+    text-align: start;
+}
+
+.modalContent .modal-header {
+    border-bottom: 1px solid #DACBBB;
+    background-color: #B07D28; 
+    color: #F2E6D3; 
+}
+
+.modalContent .modal-footer {
+    border-top: 1px solid #DACBBB;
+}
+
+.modalContent a {
+    text-decoration: none;
+    color: #B07d28;
+}
+
+.modalContent a:hover {
+    text-decoration: underline;
+    color: #444444;
+}
+
+.modalContent .fa {
+    font-size: 24px; 
+    margin-right: 10px; 
+}
+
+.modalContent .fa:hover {
+    color: #15DBDB; 
+}
+
+.copyright {
+    flex-grow: 1; 
+    text-align: center;
+    color: #444444;
+}
+
+.socialLinks a{
+    margin-right: 2rem;
+}
+.socialLinks a i {
+    font-size: 4rem;
+}
+
+.socialLinks a i:hover {
+    color: #444444;
+    background-color: none;
+}

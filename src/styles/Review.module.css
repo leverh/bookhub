@@ -1,0 +1,112 @@
+.Review {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    background-color:#F5F5F5;
+}
+
+.Media a {
+    font-size: 4rem !important;
+  }
+
+
+.ReviewImage {
+    max-width: 100%;
+}
+
+.cardTitle {
+    font-weight: 600 !important;
+    font-size: 2rem !important;
+    text-align: center;
+}
+
+
+.AuthorName {
+    font-weight: 600;
+}
+
+.ISBN {
+    font-size: 1.3rem;
+}
+
+.Content {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.ReviewBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+.Heart, .HeartOutline {
+    color: #e0245e;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.HeartOutline:hover {
+    color: #ff4b6e;
+}
+
+.ReviewBar i {
+    font-size: 1.5rem;
+}
+
+.ReviewBar .fa-comments {
+    font-size: 4rem;
+}
+
+.flexContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.dateStyle {
+    font-size: 1.5rem;
+}
+
+.ownerStyle {
+    font-size: 1.5rem;
+    color: #333333;
+}
+
+.ownerStyle:hover {
+    color: #FFA500;
+}
+
+.linkStyle{
+    text-decoration-color: #FFA500;
+    text-decoration-thickness: .17rem;
+}
+
+.iconCount {
+    font-size: 1.5rem;
+}
+
+.Modal {
+    background-color: #f7f7f7;
+    border-radius: 1rem;
+  }
+  
+  .ModalHeader {
+    background-color: #333;
+    color: white;
+  }
+  
+  .ModalBody {
+    padding: 2rem;
+  }
+  
+  .ModalFooter {
+    justify-content: center;
+  }

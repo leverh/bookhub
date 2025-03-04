@@ -1,0 +1,49 @@
+.ProfileImage {
+    object-fit: cover;
+    max-height: 15rem;
+    max-width: 15rem;
+    margin: .4rem;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media screen and (max-width: 991px) {
+    .ProfileImage {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  .postsCount, .followersCount, .followingCount {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  .postsLabel, .followersLabel, .followingLabel {
+    font-size: 1.5rem;
+  }
+
+  .counterContainer {
+    gap: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .content {
+    font-size: 1.5rem !important;
+  }
+
+  .flexContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 360px) {
+    .counterContainer {
+      display: flex;
+      flex-direction: column;
+    }
+  }

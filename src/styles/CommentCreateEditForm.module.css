@@ -1,0 +1,14 @@
+.Form {
+    border: none;
+    border-bottom: 2px #444444 solid;
+    width: 200%;
+  }
+
+  .postButton {
+    margin-top: 1rem;
+  }
+
+  .editCancelButton, .editSaveButton {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }

@@ -1,0 +1,16 @@
+.DropdownItem {
+    max-width: 100%;
+    padding: 0px;
+  }
+  
+  .dropdownIcon {
+    margin-right: 1rem; 
+}
+
+.clickableIcon {
+  cursor: pointer;
+}
+
+a {
+  font-size: 1.5rem;
+}

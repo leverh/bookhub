@@ -1,0 +1,46 @@
+.quoteContainer {
+    margin: 5rem auto 0 auto;
+    text-align: center;
+    max-width: 80%;
+    
+}
+
+.quoteContainer p {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.quoteContainer p:first-child {
+    font-size: 1.5rem;
+    max-width: 50%;
+    
+}   
+
+.quoteContainer p:nth-child(2) {
+    font-size: 1.5rem;
+    font-style: italic;
+    max-width: 70%;
+}
+
+.quoteContainer p:nth-child(3) {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.arrow-divider {
+    width: 0;
+    height: 0;
+    margin: 0 auto;
+    margin-top: 1rem;
+    display: block;
+    margin-bottom: 2rem;
+  }
+  
+  /* Up arrow */
+  .arrow-divider::before {
+    content: '';
+    border-style: solid;
+    border-width: 0 15px 20px 15px;
+    border-color: transparent transparent #B07d28 transparent;
+    
+  }

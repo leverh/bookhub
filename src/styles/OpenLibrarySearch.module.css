@@ -1,0 +1,58 @@
+.searchContainer {
+    padding: 1rem;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.searchHeader {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #444444;
+}
+
+.descriptionText {
+    font-size: 1.5rem;
+}
+
+.searchInput {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 1rem;
+}
+
+.searchButton {
+    margin-top: 0.5rem;
+}
+
+.searchResults {
+    list-style: none;
+    padding: 0;
+    max-width: 100%;
+}
+
+.searchResults li {
+    border: 1px solid #444444;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+ 
+.flexLinkContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.bookCoverImage {
+    max-width: 100px;
+}

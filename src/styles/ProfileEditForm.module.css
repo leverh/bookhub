@@ -1,0 +1,19 @@
+.Label {
+    font-size: 2rem;
+}
+
+.customButtonClass2, .customButtonClass1 {
+    margin-top: 1.5rem !important;
+}
+
+.bioLabel, .username, .newPassword {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.newPassword {
+    margin-top: 1rem;
+}
+

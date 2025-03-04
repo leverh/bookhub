@@ -1,0 +1,56 @@
+.Row {
+  background-color: #F2E6D3; 
+}
+
+.Input {
+  background: #ffffff;
+  border: 1px solid #dcd8d0; 
+  color: #5d5b53; 
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+.Header {
+  font-weight: bold;
+  font-size: 2.5rem; 
+  text-align: center;
+  color: #444444; 
+}
+
+.Link {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin: auto;
+  color: #444444;
+  font-size: 1.5rem;
+}
+
+.Link span {
+  color: #FFA500;
+}
+
+.Container {
+  padding: 3rem 10rem;
+}
+
+.SignInCol {
+  height: 32rem;
+}
+
+.SignUpCol {
+  height: 37.5rem;
+}
+
+img {
+  border-radius: 10px;
+}
+
+.modal-title {
+  font-size: 1.5rem;  
+}
+
+.modal-body {
+  font-size: 1.2rem;
+}

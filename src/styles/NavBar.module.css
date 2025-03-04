@@ -1,0 +1,72 @@
+.Nav {
+    line-height: 1.5;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .NavBar {
+    font-size: 1.5rem;
+    padding: .5rem;
+    vertical-align: middle;
+  }
+  
+  .NavBar a {
+    color: #333333;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: color 0.3s ease;
+  }
+  
+  .NavBar a:hover {
+    color: #444444;
+  }
+  
+  .NavBar i {
+    color: #333333;
+    font-size: 1.5rem;
+    padding: .5rem;
+    vertical-align: middle;
+  }
+  
+  .NavBar i:hover {
+    color: #FFA500;
+  }
+  
+  .NavBar .NavLinkContent:hover {
+    border-bottom: 2px solid #FFA500;
+  }
+  
+  .Active i {
+    color: #FFA500;
+  }
+
+  .NavBar .ProfileLink:hover {
+    border-bottom: none !important;
+    color: #FFA500;
+  }
+
+  .navbar-brand .log-img {
+    border-radius: 20px !important;
+    height: 5rem !important;
+  }
+
+  .Title {
+    font-size: 2rem;
+  }
+
+  .Body {
+    font-size: 1.5rem;
+  }
+
+  .NavLink {
+    padding: 0 .5rem;
+  }
+
+  @media (max-width: 990px) {
+    .NavBar {
+      white-space: nowrap;
+      font-size: 1rem;
+    } 
+  }

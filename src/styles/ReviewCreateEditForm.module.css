@@ -1,0 +1,26 @@
+.Container {
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    background: #f9f9f9;
+}
+
+.Header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.Input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.editLabel {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

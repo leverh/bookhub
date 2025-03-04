@@ -1,0 +1,39 @@
+.SearchBar input {
+  border-radius: 20px;
+  color: #825343;
+  padding: .6rem 4rem;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.SearchIcon {
+  position: absolute;
+  font-size: 1.2rem;
+  padding: 9px;
+  padding-left: 15px;
+}
+
+.SearchIcon:hover {
+  cursor: pointer;
+  color: #5d5b53;
+}
+
+.SearchBar input:focus {
+  outline: none; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
+  border-color: #825343; 
+}
+
+.SearchBar input::placeholder {
+  color: #333333; 
+}
+
+@media (max-width: 990px) {
+  .reviewsContainer {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 100%; 
+  }
+}
+
