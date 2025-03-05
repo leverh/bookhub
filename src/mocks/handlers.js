@@ -1,6 +1,6 @@
 import { rest } from "msw";
 
-const baseURL = process.env.REACT_APP_API_URL || 'https://ErrorCodes.pythonanywhere.com/';
+const baseURL = process.env.REACT_APP_API_URL;
 export const handlers = [
   rest.get(`${baseURL}dj-rest-auth/user/`, (req, res, ctx) => {
     return res(

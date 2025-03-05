@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://ErrorCodes.pythonanywhere.com/';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true
 
 export const axiosReq = axios.create({
