@@ -3,18 +3,22 @@ import styles from '../styles/LiteraryQuote.module.css';
 
 function LiteraryQuote() {
   const [quote, setQuote] = useState(null);
-
+  
   useEffect(() => {
-    fetch('https://api.quotable.io/random')
+    fetch('https://corsproxy.io/?https://api.quotable.io/random')
       .then(response => response.json())
       .then(data => {
         setQuote(data);
       })
       .catch(err => {
         console.error('Error fetching quote:', err);
+        setQuote({
+          content: "The more that you read, the more things you will know. The more that you learn, the more places you'll go.",
+          author: "Dr. Seuss"
+        });
       });
   }, []);
-
+  
   return (
     <div className={styles.quoteContainer}>
       {quote ? (
