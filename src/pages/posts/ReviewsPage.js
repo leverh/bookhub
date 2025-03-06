@@ -13,15 +13,15 @@ import Form from "react-bootstrap/Form";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
-import BookOfTheWeek from "../../components/BookOfTheWeek";
-import { fetchBookOfTheWeek } from "../../api/bookAPI";
+// import BookOfTheWeek from "../../components/BookOfTheWeek"; // Commented out
+// import { fetchBookOfTheWeek } from "../../api/bookAPI"; // Commented out
 import LiteraryQuote from '../../pages/LiteraryQuote';
 import ScrollToTopButton from '../../components/ScrollToTopButton'
 
 
 function ReviewsPage({ message, filter = "" }) {
   const [reviews, setReviews] = useState({ results: [], next: null });
-  const [bookOfTheWeek, setBookOfTheWeek] = useState(null);
+  // const [bookOfTheWeek, setBookOfTheWeek] = useState(null); // Commented out
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
@@ -37,6 +37,7 @@ function ReviewsPage({ message, filter = "" }) {
       }
     };
 
+    /*
     const getBookOfTheWeek = async () => {
       try {
         const data = await fetchBookOfTheWeek();
@@ -45,11 +46,12 @@ function ReviewsPage({ message, filter = "" }) {
         console.error("Error fetching Book of the Week:", error);
       }
     };
+    */
 
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchReviews();
-      getBookOfTheWeek(); 
+      // getBookOfTheWeek();  // Commented out
     }, 1000);
 
     return () => {
@@ -59,59 +61,58 @@ function ReviewsPage({ message, filter = "" }) {
 
   return (
     <Container className="position-relative">
-    <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={7}>
-        <PopularProfiles mobile />
-        <i className={`fas fa-search ${styles.SearchIcon}`} />
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search reviews"
-          />
-        </Form>
+      <Row className="h-100">
+        <Col className="py-2 p-0 p-lg-2" lg={7}>
+          <PopularProfiles mobile />
+          <i className={`fas fa-search ${styles.SearchIcon}`} />
+          <Form
+            className={styles.SearchBar}
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <Form.Control
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              type="text"
+              className="mr-sm-2"
+              placeholder="Search reviews"
+            />
+          </Form>
 
-        <BookOfTheWeek book={bookOfTheWeek} />
+          {/* <BookOfTheWeek book={bookOfTheWeek} /> */} {/* Commented out */}
 
-        <LiteraryQuote />
-        <Container className={styles.reviewsContainer}>
-        {hasLoaded ? (
-          <>
-            {reviews.results.length ? (
-              <InfiniteScroll
-                dataLength={reviews.results.length}
-                next={() => fetchMoreData(reviews, setReviews)}
-                hasMore={!!reviews.next}
-                loader={<Asset spinner />}
-              >
-                {reviews.results.map((review) => (
-                  <Review key={review.id} {...review} setReviews={setReviews} />
-                ))}
-              </InfiniteScroll>
+          <LiteraryQuote />
+          <Container className={styles.reviewsContainer}>
+            {hasLoaded ? (
+              <>
+                {reviews.results.length ? (
+                  <InfiniteScroll
+                    dataLength={reviews.results.length}
+                    next={() => fetchMoreData(reviews, setReviews)}
+                    hasMore={!!reviews.next}
+                    loader={<Asset spinner />}
+                  >
+                    {reviews.results.map((review) => (
+                      <Review key={review.id} {...review} setReviews={setReviews} />
+                    ))}
+                  </InfiniteScroll>
+                ) : (
+                  <Container className={`${appStyles.Content} ${styles.container}`}>
+                    <Asset src={NoResults} message={message} />
+                  </Container>
+                )}
+              </>
             ) : (
               <Container className={`${appStyles.Content} ${styles.container}`}>
-                <Asset src={NoResults} message={message} />
+                <Asset spinner />
               </Container>
             )}
-          </>
-        ) : (
-          <Container className={`${appStyles.Content} ${styles.container}`}>
-            <Asset spinner />
           </Container>
-        )}
-        </Container>
-      </Col>
-      <Col md={5} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
-      </Col>
-      
-    </Row>
-    <ScrollToTopButton />
+        </Col>
+        <Col md={5} className="d-none d-lg-block p-0 p-lg-2">
+          <PopularProfiles />
+        </Col>
+      </Row>
+      <ScrollToTopButton />
     </Container>
   );
 }
