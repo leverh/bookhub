@@ -1,9 +1,7 @@
 import React from "react";
-import btnStyles from "../../styles/Button.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import { Button } from "react-bootstrap";
 import styles from "../../styles/Profile.module.css";
 import { useSetProfileData } from "../../contexts/ProfileDataContext";
 
@@ -16,24 +14,18 @@ const Profile = (props) => {
 
   const { handleFollow, handleUnfollow } = useSetProfileData();
 
-return (
-  <div className="my-3 d-flex align-items-center justify-content-between">
-    <Link className="align-self-center d-flex align-items-center" to={`/profiles/${id}`}>
-
-      {/* Avatar */}
-      <Avatar src={image} height={imageSize} />
-    
-      <div className={`mx-2 ${styles.WordBreak} flex-grow-1`}>
-        <strong className={styles.username}>{owner}</strong>
-      </div>
-    </Link>
-
-    <div>
+  return (
+    <div className={styles.profileItem}>
+      <Link className={styles.profileLink} to={`/profiles/${id}`}>
+        <Avatar src={image} height={imageSize} />
+        <div className={styles.usernameContainer}>
+          <strong className={styles.username}>{owner}</strong>
+        </div>
+      </Link>
+      <div className={styles.buttonContainer}>
         {currentUser && !is_owner && (
-          <Button
-          className={`${btnStyles.Button} ${
-            following_id ? btnStyles.BlackOutline : btnStyles.Black
-        } ${styles.fixedWidthButton} ${styles.stretchedTextButton}`}
+          <button
+            className={`${styles.followButton} ${following_id ? styles.unfollowButton : ''}`}
             onClick={() => {
               if (following_id) {
                 handleUnfollow(profile);
@@ -43,12 +35,11 @@ return (
             }}
           >
             {following_id ? "unfollow" : "follow"}
-          </Button>
+          </button>
         )}
       </div>
     </div>
   );
-
 };
 
 export default Profile;

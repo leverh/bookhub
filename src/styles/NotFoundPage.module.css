@@ -1,11 +1,91 @@
 .container {
-    text-align: center;
-    padding: 2rem;
-    background-color: #F2E6D3;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #F8FAFC;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  max-width: 30rem;
+  max-height: 30rem;
+  margin-bottom: 2rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.title {
+  color: #1A202C; 
+  font-size: 3rem;
+  margin-top: 2rem;
+  font-weight: 700;
+}
+
+.description {
+  color: #4A5568; 
+  margin: 1.5rem auto;
+  font-size: 1.6rem;
+  max-width: 60rem;
+  line-height: 1.6;
+}
+
+.homeLink {
+  margin-top: 2.5rem;
+  display: inline-block;
+  background-color: #319795; 
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  transition: all 0.3s ease;
+}
+
+.homeLink:hover {
+  background-color: #2C7A7B; /* Darker teal on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.homeLink:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.4rem;
+  }
+  
+  .description {
+    font-size: 1.4rem;
+  }
+  
+  .image {
+    max-width: 25rem;
+    max-height: 25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 3rem 1.5rem;
   }
   
   .image {
@@ -14,25 +94,15 @@
   }
   
   .title {
-    color: #333;
     font-size: 2rem;
-    margin-top: 2rem;
   }
   
   .description {
-    color: #333;
-    margin-top: 1rem;
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   
   .homeLink {
-    margin-top: 2rem;
-    color: #B07D28;
-    text-decoration: none;
-    font-weight: 500;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
   }
-  
-  .homeLink:hover {
-    text-decoration: underline;
-  }
-  
+}

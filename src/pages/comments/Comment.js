@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
@@ -30,40 +29,41 @@ const Comment = (props) => {
   
 
   return (
-    <>
-      <hr />
-      <Media>
-        <Link to={`/profiles/${profile_id}`}>
-          <Avatar src={profile_image} />
-        </Link>
-        <Media.Body className="align-self-center ml-2">
-            <div className={styles.commentContainer}>
-                <div>
-                    <span className={styles.Owner}>{owner}</span>
-                    <span className={styles.Date}>{updated_at}</span>
-                    {showEditForm ? (
-                        <CommentEditForm
-                            id={id}
-                            content={content}
-                            setComments={setComments}
-                            setShowEditForm={setShowEditForm}
-                        />
-                    ) : (
-                        <p>{content}</p>
-                    )}
-                </div>
-                {is_owner && !showEditForm && (
-                    <MoreDropdown
-                        className={styles.moreDropdown}
-                        handleEdit={() => setShowEditForm(true)}
-                        handleDelete={handleDelete}
-                    />
-                )}
-            </div>
-        </Media.Body>
-      </Media>
-    </>
-);
-}
+    <div className={styles.comment}>
+      <Link to={`/profiles/${profile_id}`} className={styles.avatarLink}>
+        <Avatar src={profile_image} />
+      </Link>
+      
+      <div className={styles.commentBody}>
+        <div className={styles.commentContainer}>
+          <div className={styles.commentContent}>
+            <span className={styles.owner}>{owner}</span>
+            <span className={styles.date}>{updated_at}</span>
+            
+            {showEditForm ? (
+              <CommentEditForm
+                id={id}
+                content={content}
+                setComments={setComments}
+                setShowEditForm={setShowEditForm}
+              />
+            ) : (
+              <p className={styles.commentText}>{content}</p>
+            )}
+          </div>
+          
+          {is_owner && !showEditForm && (
+            <MoreDropdown
+              className={styles.moreDropdown}
+              handleEdit={() => setShowEditForm(true)}
+              handleDelete={handleDelete}
+            />
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 
 export default Comment;

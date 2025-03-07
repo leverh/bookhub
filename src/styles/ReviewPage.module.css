@@ -1,0 +1,79 @@
+.reviewPageContainer {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .mainContent {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .leftColumn {
+    flex: 1;
+    min-width: 0; /* For proper text truncation */
+  }
+  
+  .rightColumn {
+    width: 30%;
+    min-width: 25rem;
+  }
+  
+  .mobileProfilesWrapper {
+    margin-bottom: 2rem;
+    display: none;
+  }
+  
+  .commentsSection {
+    background-color: white;
+    border-radius: 0.8rem;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .commentsHeader {
+    font-size: 1.8rem;
+    color: #1A202C;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #E2E8F0;
+  }
+  
+  .noComments {
+    color: #718096;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem 0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 992px) {
+    .mainContent {
+      flex-direction: column;
+    }
+    
+    .leftColumn {
+      width: 100%;
+    }
+    
+    .rightColumn {
+      display: none;
+    }
+    
+    .mobileProfilesWrapper {
+      display: block;
+    }
+  }
+  
+  /* Animation for loading content */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .commentsSection > * {
+    animation: fadeIn 0.3s ease;
+  }

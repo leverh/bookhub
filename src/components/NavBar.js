@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Modal, Button, Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo.png";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -80,82 +79,94 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar
-        expanded={expanded}
-        className={styles.NavBar}
-        expand="md" 
-      >
-        <Container>
-          <NavLink to="/" className="nav-link">
-            <Navbar.Brand>
-              <img src={logo} alt="BookHub logo" className="log-img" height="35" />
-            </Navbar.Brand>
-          </NavLink>
-          {currentUser && addReviewIcon}
-          <Navbar.Toggle
-            ref={ref}
+      <nav className={styles.navBar} ref={ref}>
+        <div className={styles.container}>
+          <div className={styles.navLeft}>
+            <NavLink to="/" className={styles.logoLink}>
+              <img src={logo} alt="BookHub logo" className={styles.logo} />
+            </NavLink>
+            {currentUser && addReviewIcon}
+          </div>
+          
+          <button 
+            className={styles.menuToggle}
             onClick={() => setExpanded(!expanded)}
-            aria-controls="basic-navbar-nav"
-          />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className={`ml-auto text-left navbar-special ${styles.Nav}`}>
+            aria-label="Toggle navigation menu"
+          >
+            <i className="fas fa-bars"></i>
+          </button>
+          
+          <div className={`${styles.navMenu} ${expanded ? styles.expanded : ''}`}>
+            <div className={styles.navLinks}>
               <NavLink
                 exact
-                className={styles.NavLink}
-                activeClassName={styles.Active}
+                className={styles.navLink}
+                activeClassName={styles.active}
                 to="/"
               >
-                <span className={styles.NavLinkContent}>
+                <span className={styles.navLinkContent}>
                   <i className="fas fa-home"></i>Home
                 </span>
               </NavLink>
+              
               <NavLink
-                className={styles.NavLink}
-                activeClassName={styles.Active}
+                className={styles.navLink}
+                activeClassName={styles.active}
                 to="/openlibrary-search"
               >
-                <span className={styles.NavLinkContent}>
+                <span className={styles.navLinkContent}>
                   <i className="fas fa-search"></i>OpenLibrary Search
                 </span>
               </NavLink>
-
+  
               <NavLink
-                className={styles.NavLink}
-                activeClassName={styles.Active}
+                className={styles.navLink}
+                activeClassName={styles.active}
                 to="/nyt-reviews"
               >
-                <span className={styles.NavLinkContent}>
+                <span className={styles.navLinkContent}>
                   <i className="fas fa-newspaper"></i>NYT Reviews
                 </span>
               </NavLink>
-
+  
               <NavLink
-                className={styles.NavLink}
-                activeClassName={styles.Active}
+                className={styles.navLink}
+                activeClassName={styles.active}
                 to="/about-us"
               >
-                <span className={styles.NavLinkContent}>
+                <span className={styles.navLinkContent}>
                   <i className="fas fa-info-circle"></i>About Us
                 </span>
               </NavLink>
-
+  
               {currentUser ? loggedInIcons : loggedOutIcons}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Modal show={showModal} onHide={() => setShowModal(false)} className={styles.logoutModal}>
-        <Modal.Header closeButton>
-          <Modal.Title className={styles.Title}>Logged Out</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className={styles.Body}>You have been successfully logged out!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={() => setShowModal(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      {showModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <h2 className={styles.modalTitle}>Logged Out</h2>
+              <button className={styles.modalClose} onClick={() => setShowModal(false)}>
+                &times;
+              </button>
+            </div>
+            <div className={styles.modalBody}>
+              You have been successfully logged out!
+            </div>
+            <div className={styles.modalFooter}>
+              <button className={styles.modalButton} onClick={() => setShowModal(false)}>
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
-  };
+};
+
 export default NavBar;

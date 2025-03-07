@@ -1,6 +1,4 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import Profile from "./Profile";
@@ -10,28 +8,31 @@ const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
 
   return (
-    <Container
-      className={`${appStyles.Content} ${mobile && "d-lg-none text-center mb-3"} ${styles.popularProfilesContainer}`}
-    >
+    <div className={`${styles.popularProfilesContainer} ${mobile ? styles.mobileContainer : ""}`}>
       {popularProfiles && popularProfiles.results && popularProfiles.results.length ? (
         <>
-          <h4 className={styles.popularUserHeader}>Our Users:</h4>
+          <h4 className={styles.popularUserHeader}>Our Users</h4>
+          
           {mobile ? (
-            <div className={`${styles.profileContainer} ${mobile && styles.mobileProfileContainer}`}>
+            <div className={styles.mobileProfilesGrid}>
               {popularProfiles.results.slice(0, 4).map((profile) => (
                 <Profile key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (
-            popularProfiles.results.map((profile) => (
-              <Profile className={styles.profileStyle} key={profile.id} profile={profile} />
-            ))
+            <div className={styles.profilesList}>
+              {popularProfiles.results.map((profile) => (
+                <Profile key={profile.id} profile={profile} />
+              ))}
+            </div>
           )}
         </>
       ) : (
-        <Asset spinner />
+        <div className={styles.loaderContainer}>
+          <Asset spinner />
+        </div>
       )}
-    </Container>
+    </div>
   );
 };
 

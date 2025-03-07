@@ -1,46 +1,95 @@
 .quoteContainer {
-    margin: 5rem auto 0 auto;
+    margin: 2rem auto 2.5rem auto;
+    padding: 2.4rem;
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    border-left: 4px solid #F56565;
+    max-width: 100%;
     text-align: center;
-    max-width: 80%;
-    
-}
-
-.quoteContainer p {
-    text-align: center;
-    margin: 0 auto;
-}
-
-.quoteContainer p:first-child {
-    font-size: 1.5rem;
-    max-width: 50%;
-    
-}   
-
-.quoteContainer p:nth-child(2) {
-    font-size: 1.5rem;
-    font-style: italic;
-    max-width: 70%;
-}
-
-.quoteContainer p:nth-child(3) {
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-.arrow-divider {
-    width: 0;
-    height: 0;
-    margin: 0 auto;
-    margin-top: 1rem;
-    display: block;
-    margin-bottom: 2rem;
   }
   
-  /* Up arrow */
+  .quoteContainer h3 {
+    color: #319795;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .quoteContainer p {
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  .quoteContainer p:nth-child(2) {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #4A5568;
+    font-style: italic;
+    max-width: 90%;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding: 0 1.2rem;
+  }
+  
+  .quoteContainer p:nth-child(2)::before,
+  .quoteContainer p:nth-child(2)::after {
+    content: '"';
+    font-size: 3.5rem;
+    color: #E2E8F0;
+    position: absolute;
+    font-family: Georgia, serif;
+    line-height: 0;
+  }
+  
+  .quoteContainer p:nth-child(2)::before {
+    left: -1rem;
+    top: 1.5rem;
+  }
+  
+  .quoteContainer p:nth-child(2)::after {
+    right: -1rem;
+    bottom: -0.5rem;
+  }
+  
+  .quoteContainer p:nth-child(3) {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #805AD5;
+    margin-top: 1rem;
+  }
+  
+  .arrow-divider {
+    width: 5rem;
+    height: 1px;
+    background-color: #E2E8F0;
+    margin: 2rem auto 0;
+    position: relative;
+  }
+  
   .arrow-divider::before {
     content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
     border-style: solid;
-    border-width: 0 15px 20px 15px;
-    border-color: transparent transparent #B07d28 transparent;
+    border-width: 0 8px 10px 8px;
+    border-color: transparent transparent #F56565 transparent;
+  }
+  
+  @media (max-width: 768px) {
+    .quoteContainer {
+      padding: 2rem 1.5rem;
+    }
     
+    .quoteContainer p:nth-child(2) {
+      font-size: 1.5rem;
+      max-width: 100%;
+    }
+    
+    .quoteContainer p:nth-child(3) {
+      font-size: 1.3rem;
+    }
   }

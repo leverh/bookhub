@@ -1,42 +1,71 @@
 .scrollButtonContainer {
     position: fixed;
-    bottom: 10%;
+    bottom: 5%;
     right: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.scrollButton {
-    background-color: #FFA500;
-    color: #fff;
+    z-index: 100;
+  }
+  
+  .scrollButton {
+    background-color: #319795; /* Teal from theme */
+    color: white;
     border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
+    width: 4.5rem;
+    height: 4.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2.4rem;
-    transition: opacity 0.3s, background-color 0.3s;
-    opacity: 0.8;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-}
-
-.scrollButton:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 0.9;
+      transform: translateY(0);
+    }
+  }
+  
+  .scrollButton:hover {
+    background-color: #2C7A7B; /* Darker teal on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     opacity: 1;
-    background-color: #ff6347;
-}
-
-
-@media (max-width: 1396px) {
+    transform: translateY(-3px);
+  }
+  
+  .scrollButton:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .scrollButton::before {
+    content: '\f062';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  } 
+  
+  @media (max-width: 1396px) {
     .scrollButtonContainer {
-        bottom: 15%;
+      bottom: 10%;
     }
-}
-
-@media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
     .scrollButtonContainer {
-        right: calc(5% + 40px);
+      bottom: 8%;
+      right: 5%;
     }
-}
+    
+    .scrollButton {
+      width: 4rem;
+      height: 4rem;
+      font-size: 2rem;
+    }
+  }

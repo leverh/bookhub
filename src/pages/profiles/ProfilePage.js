@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import { Button, Image } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import Asset from "../../components/Asset";
-import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
+import Asset from "../../components/Asset";
+import styles from "../../styles/Profile.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -15,9 +11,6 @@ import Review from "../posts/Review";
 import { fetchMoreData } from "../../utils/utils";
 import NoResults from "../../assets/no-results.png";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
-import btnStyles from "../../styles/Button.module.css";
-import profileStyles from '../../styles/ProfilePage.module.css';
-
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -53,111 +46,118 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
-  const mainProfile = (
-    <>
-      
-      <Row noGutters className="px-3 text-center">
-        <Col lg={3} className="text-lg-left">
-        <Image
-        className={profileStyles.ProfileImage}
-        src={profile?.image}
-/>
-
-        </Col>
-        <Col lg={6}>
-  <div className="d-flex align-items-center">
-    <h3 className="m-2">{profile?.owner}</h3>
-    {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
-  </div>
-            <Row className={`justify-content-center no-gutters ${profileStyles.counterContainer}`}>
-
-            <Col xs={3} className="my-2">
-              <div className={profileStyles.postsCount}>
-              {profile?.posts_count}</div>
-              <div className={profileStyles.postsLabel}>reviews</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div className={profileStyles.followersCount}>
-                {profile?.followers_count}</div>
-              <div className={profileStyles.followersLabel}>followers</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div className={profileStyles.followingCount}>
-                {profile?.following_count}</div>
-              <div className={profileStyles.followingLabel}>following</div>
-            </Col>
-          </Row>
-        </Col>
-        <Col lg={3} className="text-lg-right">
-          {currentUser &&
-            !is_owner &&
-            (profile?.following_id ? (
-              <Button
-                className={btnStyles.Button}
-                onClick={() => handleUnfollow(profile)}
-              >
-                unfollow
-              </Button>
-            ) : (
-              <Button
-                className={btnStyles.Button}
-                onClick={() => handleFollow(profile)}
-              >
-                follow
-              </Button>
-            ))}
-        </Col>
-        {profile?.content && <Col className={`${profileStyles.content} p-3`}>{profile.content}</Col>}
-
-      </Row>
-    </>
-  );
-  
-  const mainProfileReviews = (
-    <>
-      <hr />
-      <p className="text-center">{profile?.owner}'s reviews</p>
-      <hr />
-      {profileReviews.results.length ? (
-        <InfiniteScroll
-          children={profileReviews.results.map((review) => (
-            <Review key={review.id} {...review} setReviews={setProfileReviews} />
-          ))}
-          dataLength={profileReviews.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!profileReviews.next}
-          next={() => fetchMoreData(profileReviews, setProfileReviews)}
-        />
-      ) : (
-        <Asset
-          src={NoResults}
-          message={`No results found, ${profile?.owner} hasn't posted any review yet.`}
-        />
-      )}
-    </>
-  );
-
   return (
-    <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfiles mobile />
-        <Container className={appStyles.Content}>
-          {hasLoaded ? (
-            <>
-              {mainProfile}
-              <div className={profileStyles.flexContainer}>
-              {mainProfileReviews}
+    <div className={styles.profilePageContainer}>
+      <div className={styles.mainContent}>
+        <div className={styles.leftColumn}>
+          <div className={styles.mobileOnly}>
+            <PopularProfiles mobile />
+          </div>
+          
+          <div className={styles.profileContainer}>
+            {hasLoaded ? (
+              <>
+                {/* Profile Header Section */}
+                <div className={styles.profileHeader}>
+                  <div className={styles.profileImageContainer}>
+                    <img
+                      className={styles.profileImage}
+                      src={profile?.image}
+                      alt={`${profile?.owner}'s profile`}
+                    />
+                  </div>
+                  
+                  <div className={styles.profileInfo}>
+                    <div className={styles.nameContainer}>
+                      <h3 className={styles.profileName}>{profile?.owner}</h3>
+                      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+                    </div>
+                    
+                    <div className={styles.statsContainer}>
+                      <div className={styles.statItem}>
+                        <div className={styles.statCount}>{profile?.posts_count}</div>
+                        <div className={styles.statLabel}>reviews</div>
+                      </div>
+                      <div className={styles.statItem}>
+                        <div className={styles.statCount}>{profile?.followers_count}</div>
+                        <div className={styles.statLabel}>followers</div>
+                      </div>
+                      <div className={styles.statItem}>
+                        <div className={styles.statCount}>{profile?.following_count}</div>
+                        <div className={styles.statLabel}>following</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className={styles.actionContainer}>
+                    {currentUser &&
+                      !is_owner &&
+                      (profile?.following_id ? (
+                        <button
+                          className={`${styles.followButton} ${styles.unfollowButton}`}
+                          onClick={() => handleUnfollow(profile)}
+                        >
+                          unfollow
+                        </button>
+                      ) : (
+                        <button
+                          className={styles.followButton}
+                          onClick={() => handleFollow(profile)}
+                        >
+                          follow
+                        </button>
+                      ))}
+                  </div>
+                </div>
+                
+                {/* Profile Bio */}
+                {profile?.content && (
+                  <div className={styles.profileBio}>
+                    {profile.content}
+                  </div>
+                )}
+                
+                {/* Profile Reviews */}
+                <div className={styles.profileReviews}>
+                  <div className={styles.reviewsHeader}>
+                    <div className={styles.divider}></div>
+                    <h4 className={styles.reviewsTitle}>{profile?.owner}'s reviews</h4>
+                    <div className={styles.divider}></div>
+                  </div>
+                  
+                  {profileReviews.results.length ? (
+                    <InfiniteScroll
+                      children={profileReviews.results.map((review) => (
+                        <Review key={review.id} {...review} setReviews={setProfileReviews} />
+                      ))}
+                      dataLength={profileReviews.results.length}
+                      loader={<Asset spinner />}
+                      hasMore={!!profileReviews.next}
+                      next={() => fetchMoreData(profileReviews, setProfileReviews)}
+                    />
+                  ) : (
+                    <div className={styles.noResults}>
+                      <img src={NoResults} alt="No results" className={styles.noResultsImage} />
+                      <p className={styles.noResultsMessage}>
+                        No results found, {profile?.owner} hasn't posted any review yet.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className={styles.loaderContainer}>
+                <Asset spinner />
               </div>
-            </>
-          ) : (
-            <Asset spinner />
-          )}
-        </Container>
-      </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
-      </Col>
-    </Row>
+            )}
+          </div>
+        </div>
+        
+        <div className={styles.rightColumn}>
+          <PopularProfiles />
+        </div>
+      </div>
+    </div>
   );
 }
 

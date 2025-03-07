@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosReq } from "../../api/axiosDefaults";
-import btnStyles from "../../styles/Button.module.css";
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
@@ -39,30 +36,29 @@ function CommentCreateForm(props) {
   
 
   return (
-    <Form className="mt-2" onSubmit={handleSubmit}>
-      <Form.Group>
-        <InputGroup>
-          <Link to={`/profiles/${profile_id}`}>
+    <form className={styles.commentForm} onSubmit={handleSubmit}>
+      <div className={styles.formGroup}>
+        <div className={styles.inputGroup}>
+          <Link to={`/profiles/${profile_id}`} className={styles.avatarLink}>
             <Avatar src={profileImage} />
           </Link>
-          <Form.Control
-            className={styles.Form}
+          <textarea
+            className={styles.commentInput}
             placeholder="Write a comment..."
-            as="textarea"
             value={content}
             onChange={handleChange}
             rows={2}
           />
-        </InputGroup>
-      </Form.Group>
+        </div>
+      </div>
       <button
-        className={`${btnStyles.Button} ${styles.postButton}`}
+        className={styles.postButton}
         disabled={!content.trim()}
         type="submit"
       >
         Post
       </button>
-    </Form>
+    </form>
   );
 }
 

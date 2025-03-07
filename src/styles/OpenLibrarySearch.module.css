@@ -1,58 +1,296 @@
-.searchContainer {
-    padding: 1rem;
+/* OpenLibrarySearch.module.css */
+
+.pageContainer {
+    padding-top: 6rem;
+    min-height: 100vh;
+    background-color: #F8FAFC;
+  }
+  
+  .contentWrapper {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* Header Section */
+  .headerSection {
+    margin-bottom: 3rem;
+  }
+  
+  .pageTitle {
+    font-size: 3rem;
+    color: #1A202C;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+  }
+  
+  .descriptionContainer {
     max-width: 80rem;
     margin: 0 auto;
-}
-
-.searchHeader {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #444444;
-}
-
-.descriptionText {
-    font-size: 1.5rem;
-}
-
-.searchInput {
-    padding: 1rem;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .descriptionText {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #4A5568;
+    margin-bottom: 1.5rem;
+  }
+  
+  .descriptionText:last-child {
+    margin-bottom: 0;
+  }
+  
+  .descriptionText a {
+    color: #319795;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  
+  .descriptionText a:hover {
+    color: #2C7A7B;
+    text-decoration: underline;
+  }
+  
+  /* Search Section */
+  .searchSection {
+    margin-bottom: 4rem;
+  }
+  
+  .searchForm {
+    display: flex;
+    max-width: 70rem;
+    margin: 0 auto;
+    gap: 1.5rem;
+  }
+  
+  .inputWrapper {
+    position: relative;
+    flex: 1;
+  }
+  
+  .inputWrapper i {
+    position: absolute;
+    left: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.6rem;
+    color: #A0AEC0;
+  }
+  
+  .searchInput {
     width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    padding: 1.2rem 1.5rem 1.2rem 4.5rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .searchInput:focus {
+    outline: none;
+    border-color: #319795;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .searchButton {
+    background-color: #319795;
+    color: white;
+    border: none;
+    padding: 1.2rem 2.4rem;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+  
+  .searchButton:hover {
+    background-color: #2C7A7B;
+  }
+  
+  /* Error and Loading messages */
+  .errorMessage {
+    background-color: #FFF5F5;
+    color: #E53E3E;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid #E53E3E;
+  }
+  
+  .loadingMessage {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.6rem;
+    color: #718096;
+  }
+  
+  .endMessage {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.6rem;
+    color: #718096;
+    margin-top: 2rem;
+    font-style: italic;
+  }
+  
+  .noResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 0;
+    color: #A0AEC0;
+  }
+  
+  .noResults i {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .noResults p {
+    font-size: 1.8rem;
     margin-bottom: 1rem;
-}
-
-.searchButton {
-    margin-top: 0.5rem;
-}
-
-.searchResults {
+  }
+  
+  .noResults p:first-of-type {
+    font-weight: 600;
+  }
+  
+  /* Results Section */
+  .resultsSection {
+    margin-bottom: 5rem;
+  }
+  
+  .bookGrid {
     list-style: none;
     padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .bookCard {
+    background-color: white;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .bookCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bookLink {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 2rem 1rem;
+  }
+  
+  .bookCoverContainer {
+    width: 15rem;
+    height: 22rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .bookCover {
     max-width: 100%;
-}
-
-.searchResults li {
-    border: 1px solid #444444;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+    max-height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.4rem;
+  }
+  
+  .noCover {
+    width: 15rem;
+    height: 22rem;
+    background-color: #EDF2F7;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
- 
-.flexLinkContainer {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 0.4rem;
+    color: #A0AEC0;
+  }
+  
+  .noCover i {
+    font-size: 5rem;
+  }
+  
+  .bookTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1A202C;
     text-align: center;
-    gap: 1rem;
-}
-
-.bookCoverImage {
-    max-width: 100px;
-}
+    margin: 0;
+    line-height: 1.4;
+  }
+  
+  .bookInfo {
+    padding: 1.5rem 2rem 2rem;
+    border-top: 1px solid #E2E8F0;
+    margin-top: auto;
+  }
+  
+  .bookAuthor, .bookYear {
+    font-size: 1.4rem;
+    color: #4A5568;
+    margin: 0.8rem 0;
+  }
+  
+  .bookAuthor span, .bookYear span {
+    font-weight: 600;
+    color: #2D3748;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .searchForm {
+      flex-direction: column;
+    }
+  
+    .searchButton {
+      width: 100%;
+    }
+  
+    .bookGrid {
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    }
+  
+    .pageTitle {
+      font-size: 2.6rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .bookCoverContainer {
+      width: 12rem;
+      height: 18rem;
+    }
+  
+    .bookTitle {
+      font-size: 1.6rem;
+    }
+  
+    .bookAuthor, .bookYear {
+      font-size: 1.3rem;
+    }
+  }

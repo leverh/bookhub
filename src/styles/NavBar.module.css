@@ -1,72 +1,236 @@
-.Nav {
-    line-height: 1.5;
-    vertical-align: middle;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .NavBar {
-    font-size: 1.5rem;
-    padding: .5rem;
-    vertical-align: middle;
-  }
-  
-  .NavBar a {
-    color: #333333;
-    text-decoration: none;
-    vertical-align: middle;
-    transition: color 0.3s ease;
-  }
-  
-  .NavBar a:hover {
-    color: #444444;
-  }
-  
-  .NavBar i {
-    color: #333333;
-    font-size: 1.5rem;
-    padding: .5rem;
-    vertical-align: middle;
-  }
-  
-  .NavBar i:hover {
-    color: #FFA500;
-  }
-  
-  .NavBar .NavLinkContent:hover {
-    border-bottom: 2px solid #FFA500;
-  }
-  
-  .Active i {
-    color: #FFA500;
-  }
+.navBar {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0.8rem 0;
+  font-size: 1.5rem;
+}
 
-  .NavBar .ProfileLink:hover {
-    border-bottom: none !important;
-    color: #FFA500;
-  }
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  .navbar-brand .log-img {
-    border-radius: 20px !important;
-    height: 5rem !important;
-  }
+.navLeft {
+  display: flex;
+  align-items: center;
+}
 
-  .Title {
-    font-size: 2rem;
-  }
+.logoLink {
+  display: block;
+  margin-right: 2rem;
+}
 
-  .Body {
-    font-size: 1.5rem;
-  }
+.logo {
+  height: 4rem;
+  border-radius: 0.8rem;
+  transition: transform 0.2s ease;
+}
 
-  .NavLink {
-    padding: 0 .5rem;
-  }
+.logo:hover {
+  transform: scale(1.05);
+}
 
-  @media (max-width: 990px) {
-    .NavBar {
-      white-space: nowrap;
-      font-size: 1rem;
-    } 
+.navMenu {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navLink {
+  color: #1A202C;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+.navLink:hover {
+  color: #319795;
+  background-color: rgba(49, 151, 149, 0.05);
+}
+
+.active {
+  color: #319795;
+  background-color: rgba(49, 151, 149, 0.1);
+}
+
+.navLinkContent {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.navLinkContent:hover {
+  border-bottom: 2px solid #319795;
+}
+
+.navLink i {
+  margin-right: 0.8rem;
+  font-size: 1.6rem;
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+}
+
+.profileLink:hover {
+  border-bottom: none !important;
+}
+
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #1A202C;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.menuToggle:hover {
+  color: #319795;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 0.8rem;
+  width: 100%;
+  max-width: 50rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 2rem;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.modalTitle {
+  font-size: 2rem;
+  color: #1A202C;
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 2.4rem;
+  color: #A0AEC0;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.modalClose:hover {
+  color: #F56565;
+}
+
+.modalBody {
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: #4A5568;
+}
+
+.modalFooter {
+  padding: 1.6rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #E2E8F0;
+}
+
+.modalButton {
+  background-color: #319795;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.modalButton:hover {
+  background-color: #2C7A7B;
+}
+
+/* Responsive Styles */
+@media (max-width: 990px) {
+  .menuToggle {
+    display: block;
   }
+  
+  .navMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .navMenu.expanded {
+    display: block;
+  }
+  
+  .navLinks {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+  
+  .navLink {
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .navBar {
+    font-size: 1.4rem;
+  }
+  
+  .logo {
+    height: 3.5rem;
+  }
+}

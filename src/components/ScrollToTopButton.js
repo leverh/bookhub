@@ -30,7 +30,7 @@ const ScrollToTopButton = () => {
         <div className={styles.scrollButtonContainer}>
             {isVisible && 
                 <div onClick={scrollToTop} className={styles.scrollButton}>
-                    ↑
+                    
                 </div>
             }
         </div>

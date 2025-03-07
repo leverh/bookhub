@@ -1,39 +1,119 @@
-.SearchBar input {
-  border-radius: 20px;
-  color: #825343;
-  padding: .6rem 4rem;
-  margin-bottom: 1.6rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+.pageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
-.SearchIcon {
+.mainContent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.leftColumn {
+  flex: 1;
+  min-width: 30rem;
+}
+
+.rightColumn {
+  width: 30%;
+  min-width: 25rem;
+}
+
+/* Search Bar Styling */
+.searchContainer {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.searchIcon {
   position: absolute;
-  font-size: 1.2rem;
-  padding: 9px;
-  padding-left: 15px;
+  font-size: 1.4rem;
+  padding: 1rem;
+  color: #319795;
+  z-index: 1;
 }
 
-.SearchIcon:hover {
+.searchIcon:hover {
   cursor: pointer;
-  color: #5d5b53;
+  color: #2C7A7B;
 }
 
-.SearchBar input:focus {
-  outline: none; 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
-  border-color: #825343; 
+.searchBar {
+  width: 100%;
 }
 
-.SearchBar input::placeholder {
-  color: #333333; 
+.searchInput {
+  width: 100%;
+  border-radius: 2rem;
+  color: #1A202C;
+  padding: 1rem 4rem;
+  font-size: 1.4rem;
+  border: 1px solid #E2E8F0;
+  background-color: white;
+  margin-bottom: 1.6rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
+.searchInput:focus {
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #319795;
+}
+
+.searchInput::placeholder {
+  color: #A0AEC0;
+}
+
+/* Reviews Container */
+.reviewsContainer {
+  margin-top: 2rem;
+}
+
+.loadingContainer, 
+.noResults {
+  margin-top: 2rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+/* Responsive Design */
 @media (max-width: 990px) {
+  .rightColumn {
+    display: none;
+  }
+  
+  .leftColumn {
+    width: 100%;
+  }
+  
   .reviewsContainer {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 100%; 
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
   }
 }
 
+.mobileOnly {
+  display: none;
+}
+
+@media (max-width: 990px) {
+  .mobileOnly {
+    display: block;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Animation for loading reviews */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reviewsContainer > * {
+  animation: fadeIn 0.3s ease;
+}

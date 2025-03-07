@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import appStyles from "../../App.module.css";
 import Review from "./Review";
 import Comment from "../comments/Comment";
 import CommentCreateForm from "../comments/CommentCreateForm";
@@ -13,6 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+import styles from "../../styles/ReviewPage.module.css";
 
 function ReviewPage() {
   const { id } = useParams();
@@ -67,25 +64,30 @@ function ReviewPage() {
 
   
 
-  return (
-    <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <PopularProfiles mobile />
+return (
+  <div className={styles.reviewPageContainer}>
+    <div className={styles.mainContent}>
+      <div className={styles.leftColumn}>
+        <div className={styles.mobileProfilesWrapper}>
+          <PopularProfiles mobile />
+        </div>
+        
         {review && <Review {...review.results[0]} setReview={setReview} reviewPage />}
-        <Container className={appStyles.Content}>
+        
+        <div className={styles.commentsSection}>
           {currentUser ? (
             <CommentCreateForm
-            profile_id={currentUser.profile_id}
-            profileImage={profile_image}
-            post={id}
-            setPost={setReview}
-            setComments={setComments}
-            updateCommentCount={updateCommentCount}
-          />
-          
+              profile_id={currentUser.profile_id}
+              profileImage={profile_image}
+              post={id}
+              setPost={setReview}
+              setComments={setComments}
+              updateCommentCount={updateCommentCount}
+            />
           ) : comments.results.length ? (
-            "Comments"
+            <h3 className={styles.commentsHeader}>Comments</h3>
           ) : null}
+          
           {comments.results.length ? (
             <InfiniteScroll
               children={comments.results.map((comment) => (
@@ -103,17 +105,18 @@ function ReviewPage() {
               next={() => fetchMoreData(comments, setComments)}
             />
           ) : currentUser ? (
-            <span>No comments yet, but you could be the first one to comment!</span>
+            <p className={styles.noComments}>No comments yet, but you could be the first one to comment!</p>
           ) : (
-            <span>No comments yet!</span>
+            <p className={styles.noComments}>No comments yet!</p>
           )}
-        </Container>
-      </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+        </div>
+      </div>
+      
+      <div className={styles.rightColumn}>
         <PopularProfiles />
-      </Col>
-    </Row>
-  );
-}
+      </div>
+    </div>
+  </div>
+);}
 
 export default ReviewPage;

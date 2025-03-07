@@ -1,14 +1,91 @@
-.Form {
-    border: none;
-    border-bottom: 2px #444444 solid;
-    width: 200%;
-  }
+/* Shared styles for forms */
+.commentForm, .editForm {
+  margin-bottom: 2rem;
+}
 
-  .postButton {
-    margin-top: 1rem;
-  }
+.formGroup, .editFormGroup {
+  margin-bottom: 1.2rem;
+}
 
-  .editCancelButton, .editSaveButton {
-    font-size: 1.5rem;
-    margin-top: 1rem;
-  }
+.inputGroup {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.avatarLink {
+  flex-shrink: 0;
+}
+
+/* Common text input styles */
+.commentInput, .editInput {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 6rem;
+  color: #1A202C;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.commentInput:focus, .editInput:focus {
+  outline: none;
+  border-color: #319795;
+  box-shadow: 0 0 0 3px rgba(49, 151, 149, 0.1);
+}
+
+.commentInput::placeholder {
+  color: #A0AEC0;
+}
+
+/* Button styles */
+.postButton, .saveButton {
+  background-color: #319795;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.postButton:hover, .saveButton:hover {
+  background-color: #2C7A7B;
+}
+
+.postButton:disabled, .saveButton:disabled {
+  background-color: #CBD5E0;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: #E2E8F0;
+  color: #4A5568;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelButton:hover {
+  background-color: #CBD5E0;
+}
+
+/* Edit form specific styles */
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.editForm {
+  margin-top: 1rem;
+}

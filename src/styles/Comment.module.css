@@ -1,19 +1,67 @@
-.Owner {
-    font-size: 1.5rem;
-    color: #333333;
-    margin-right: .8rem;
-  }
-  
-  .Date {
-    color: #333333;
-  }
-  
-  .commentContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.comment {
+  display: flex;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+.comment:last-child {
+  border-bottom: none;
+}
+
+.avatarLink {
+  margin-right: 1.2rem;
+  flex-shrink: 0;
+}
+
+.commentBody {
+  flex: 1;
+}
+
+.commentContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentContent {
+  flex: 1;
+}
+
+.owner {
+  font-weight: 600;
+  color: #1A202C;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+.owner:hover {
+  color: #319795;
+}
+
+.date {
+  font-size: 1.2rem;
+  color: #718096;
+}
+
+.commentText {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #4A5568;
+  margin-top: 0.8rem;
+  margin-bottom: 0;
 }
 
 .moreDropdown {
-    align-self: center;
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+
+/* Animation for new comments */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.comment {
+  animation: fadeIn 0.3s ease;
 }

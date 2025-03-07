@@ -1,121 +1,270 @@
-.arrow-divider {
-    width: 0;
-    height: 0;
+/* AboutUs.module.css */
+
+.pageContainer {
+    padding-top: 6rem;
+    min-height: 100vh;
+    background-color: #F8FAFC;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mainContent {
+    max-width: 80rem;
     margin: 0 auto;
-    display: block;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Section Styling */
+  .heroSection,
+  .missionSection,
+  .featuresSection,
+  .communitySection,
+  .contactSection {
+    width: 100%;
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  
+  /* Typography */
+  .mainHeading {
+    font-size: 3.6rem;
+    color: #1A202C;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .sectionHeading {
+    font-size: 2.4rem;
+    color: #319795;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .tagline {
+    font-size: 2.2rem;
+    color: #1A202C;
+    margin: 2rem auto 3rem;
+    max-width: 80%;
+    line-height: 1.4;
+  }
+  
+  .missionStatement {
+    font-size: 1.8rem;
+    color: #4A5568;
+    max-width: 70%;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+  
+  p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #4A5568;
     margin-bottom: 2rem;
   }
   
-  /* Up arrow */
-  .arrow-divider::before {
-    content: '';
-    border-style: solid;
-    border-width: 0 15px 20px 15px;
-    border-color: transparent transparent #B07d28 transparent;
-    
+  /* Divider */
+  .divider {
+    height: 2px;
+    width: 6rem;
+    background-color: #F56565;
+    margin: 0 auto 2.5rem;
+    position: relative;
   }
-
-.container {
-    padding: 2rem;
-    max-width: 80rem;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-h2 {
-    font-size: 3rem;
-    margin-bottom: 2rem;
-    font-weight: bold;
-}
-
-h4 {
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    max-width: 60%;
-    text-align: center;
-    font-size: 2.5rem;
-}
-
-h5 {
-    font-size: 2rem;
-    text-align: center;
-    max-width: 60%;
-    line-height: 3rem;
-    font-weight: 600;
-}
-
-p {
-    font-size: 2rem;
-    margin-top: 2rem;
-}
-
-ul {
-    margin-top: 2rem;
+  
+  .divider::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+    border-width: 8px 8px 0;
+    border-color: #F56565 transparent transparent;
+  }
+  
+  /* Features List */
+  .featuresList {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem auto;
+    max-width: 70%;
     text-align: left;
-    max-width: 65%;
-}
-
-ul li {
-    font-size: 2rem;
-    list-style: square;
-}
-
-ul li a {
-    color: #B07d28;
-}
-
-ul li a:hover {
-    color: #444444;
-}
-
-.belief-statement {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  padding-bottom: 3rem;
-}
-
-.belief-statement img {
-    max-width: 15rem;
+  }
+  
+  .featuresList li {
+    font-size: 1.7rem;
+    margin-bottom: 1.5rem;
+    padding-left: 2.5rem;
+    position: relative;
+    line-height: 1.5;
+    color: #4A5568;
+  }
+  
+  .featuresList li::before {
+    content: '•';
+    color: #319795;
+    font-size: 2.2rem;
+    position: absolute;
+    left: 0;
+    top: -0.2rem;
+  }
+  
+  .featureHighlight {
+    color: #319795;
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+  
+  /* Belief Statement */
+  .beliefStatement {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  
+  .beliefStatement img {
+    max-width: 12rem;
     height: auto;
-    object-fit: cover;
-}
-
-.copyright {
-    font-size: 1.5rem;
+    border-radius: 0.4rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .beliefStatement img:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Contact Section */
+  .contactSection {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 3rem;
+  }
+  
+  .contactSection p {
+    font-size: 1.7rem;
+  }
+  
+  .contactSection a {
+    color: #319795;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .contactSection a:hover {
+    color: #2C7A7B;
+    text-decoration: underline;
+  }
+  
+  /* Social Links */
+  .socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .socialLinks a {
+    color: #319795;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .socialLinks a:hover {
+    color: #F56565;
+    transform: scale(1.1);
+  }
+  
+  .socialLinks i {
+    font-size: 3rem;
+  }
+  
+  /* Quick Links */
+  .quickLinks {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  .quickLinks a {
+    color: #718096;
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: color 0.2s ease;
+  }
+  
+  .quickLinks a:hover {
+    color: #319795;
+  }
+  
+  /* Copyright */
+  .copyright {
     text-align: center;
-    padding-bottom: 3rem;
-}
-
-@media (max-width: 660px) {
-    .belief-statement img {
-        max-width: 10rem;
+    padding: 2rem 0;
+    margin-top: auto;
+    font-size: 1.4rem;
+    color: #718096;
+    background-color: white;
+    border-top: 1px solid #E2E8F0;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .mainHeading {
+      font-size: 3rem;
     }
-}
-
-@media (max-width: 460px) {
-    .belief-statement {
-        flex-direction: column;
+    
+    .sectionHeading {
+      font-size: 2.2rem;
     }
-    ul {
-        max-width: 100%;
+    
+    .tagline {
+      font-size: 1.8rem;
+      max-width: 100%;
     }
-
-    ul li {
-        text-align: center;
+    
+    .missionStatement {
+      font-size: 1.6rem;
+      max-width: 100%;
     }
-
-    ol, ul {
-        padding-left: 0;
+    
+    .featuresList {
+      max-width: 90%;
     }
-    h4, h5 {
-        max-width: 100%;
+    
+    .beliefStatement img {
+      max-width: 10rem;
     }
-}
-
+  }
+  
+  @media (max-width: 480px) {
+    .beliefStatement {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .featuresList {
+      padding-left: 1rem;
+    }
+    
+    .featuresList li {
+      text-align: left;
+    }
+    
+    .quickLinks {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .socialLinks {
+      flex-wrap: wrap;
+    }
+  }

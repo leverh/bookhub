@@ -1,106 +1,162 @@
 .Review {
-    margin-top: 5rem;
+    background-color: white;
+    border-radius: 0.8rem;
     margin-bottom: 2rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 100%;
-    background-color:#F5F5F5;
-}
-
-.Media a {
-    font-size: 4rem !important;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
-
-
-.ReviewImage {
-    max-width: 100%;
-}
-
-.cardTitle {
-    font-weight: 600 !important;
-    font-size: 2rem !important;
-    text-align: center;
-}
-
-
-.AuthorName {
+  
+  .Review:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ReviewHeader {
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #E2E8F0;
+  }
+  
+  .ProfileImage {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    margin-right: 1.6rem;
+    object-fit: cover;
+  }
+  
+  .UserInfo {
+    flex: 1;
+  }
+  
+  .ownerStyle {
+    font-size: 1.6rem;
     font-weight: 600;
-}
-
-.ISBN {
-    font-size: 1.3rem;
-}
-
-.Content {
+    color: #1A202C;
+    text-decoration: none;
+    margin-bottom: 0.4rem;
+    display: inline-block;
+  }
+  
+  .ownerStyle:hover {
+    color: #319795;
+    text-decoration: underline;
+    text-decoration-color: #319795;
+  }
+  
+  .dateStyle {
     font-size: 1.4rem;
+    color: #718096;
+  }
+  
+  .ReviewImage {
+    width: 100%;
+    max-height: 40rem;
+    object-fit: cover;
+  }
+  
+  .cardTitle {
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #1A202C;
+    margin: 1.6rem 0 0.8rem;
+    text-align: center;
+  }
+  
+  .AuthorName {
+    font-weight: 600;
+    color: #319795;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 1.6rem;
+  }
+  
+  .ISBN {
+    font-size: 1.3rem;
+    color: #718096;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .Content {
+    font-size: 1.6rem;
     line-height: 1.6;
+    color: #4A5568;
+    padding: 0 2rem 2rem;
     max-width: 80rem;
     margin: 0 auto;
-}
-
-.ReviewBar {
+  }
+  
+  .ReviewBar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    padding-top: 1.5rem;
-}
-
-.Heart, .HeartOutline {
-    color: #e0245e;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.HeartOutline:hover {
-    color: #ff4b6e;
-}
-
-.ReviewBar i {
-    font-size: 1.5rem;
-}
-
-.ReviewBar .fa-comments {
-    font-size: 4rem;
-}
-
-.flexContainer {
+    padding: 1.5rem 2rem;
+    background-color: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+  }
+  
+  .flexContainer {
     display: flex;
     align-items: center;
-    flex-direction: row;
     gap: 2rem;
-}
-
-.dateStyle {
+  }
+  
+  .Heart, .HeartOutline {
+    color: #F56565;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .Heart:hover, .HeartOutline:hover {
+    color: #E53E3E;
+    transform: scale(1.1);
+  }
+  
+  .iconCount {
     font-size: 1.5rem;
-}
-
-.ownerStyle {
-    font-size: 1.5rem;
-    color: #333333;
-}
-
-.ownerStyle:hover {
-    color: #FFA500;
-}
-
-.linkStyle{
-    text-decoration-color: #FFA500;
-    text-decoration-thickness: .17rem;
-}
-
-.iconCount {
-    font-size: 1.5rem;
-}
-
-.Modal {
-    background-color: #f7f7f7;
-    border-radius: 1rem;
+    color: #4A5568;
+  }
+  
+  .linkStyle {
+    text-decoration: none;
+    color: #319795;
+  }
+  
+  .linkStyle:hover {
+    text-decoration: underline;
+    text-decoration-color: #319795;
+  }
+  
+  /* Comment icon */
+  .ReviewBar i {
+    font-size: 1.6rem;
+  }
+  
+  .ReviewBar .fa-comments {
+    color: #319795;
+    transition: transform 0.2s ease;
+  }
+  
+  .ReviewBar .fa-comments:hover {
+    color: #2C7A7B;
+    transform: scale(1.1);
+  }
+  
+  /* Modal styling */
+  .Modal {
+    background-color: white;
+    border-radius: 0.8rem;
+    overflow: hidden;
   }
   
   .ModalHeader {
-    background-color: #333;
+    background-color: #319795;
     color: white;
+    padding: 1.2rem 1.6rem;
   }
   
   .ModalBody {
@@ -108,5 +164,41 @@
   }
   
   .ModalFooter {
+    display: flex;
     justify-content: center;
+    padding: 1.6rem;
+    border-top: 1px solid #E2E8F0;
+  }
+  
+  /* Delete button */
+  .DeleteButton {
+    background-color: #F56565;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .DeleteButton:hover {
+    background-color: #E53E3E;
+  }
+  
+  /* Cancel button */
+  .CancelButton {
+    background-color: #718096;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.8rem 1.6rem;
+    margin-right: 1rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .CancelButton:hover {
+    background-color: #4A5568;
   }
