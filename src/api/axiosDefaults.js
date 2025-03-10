@@ -4,7 +4,8 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://bookhub-drf.o
 axios.defaults.withCredentials = true;
 
 const getCSRFToken = () => {
-    const csrfCookie = document.cookie.split("; ").find(row => row.startsWith("csrftoken="));
+    const csrfCookie = document.cookie.split("; ")
+        .find(row => row.startsWith("csrftoken="));
     return csrfCookie ? csrfCookie.split("=")[1] : null;
 };
 
