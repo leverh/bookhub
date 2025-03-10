@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Set base URL
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'https://bookhub-drf.onrender.com/';
 axios.defaults.withCredentials = true;
 
