@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { fetchCSRFToken } from "../../api/axiosDefaults"; // Import the function
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -18,13 +19,24 @@ function SignInForm() {
   const [errors, setErrors] = useState({});
   const history = useHistory();
   
+  // Fetch CSRF token when component mounts
+  useEffect(() => {
+    fetchCSRFToken();
+  }, []);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      });
       setCurrentUser(data.user);
       history.goBack();
     } catch (err) {
+      console.error("Login error:", err.response?.data);
       setErrors(err.response?.data);
     }
   };

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import { useRedirect } from "../../hooks/useRedirect";
 import axios from "axios";
+import { fetchCSRFToken } from "../../api/axiosDefaults"; // Import the function
 
 const SignUpForm = () => {
   useRedirect("loggedIn");
@@ -18,6 +19,11 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
   const history = useHistory();
 
+  // Fetch CSRF token when component mounts
+  useEffect(() => {
+    fetchCSRFToken();
+  }, []);
+
   const handleChange = (event) => {
     setSignUpData({
       ...signUpData,
@@ -28,12 +34,19 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
+      // Make sure to include withCredentials and content-type
+      await axios.post("/dj-rest-auth/registration/", signUpData, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      });
       setShowSuccessModal(true);  
       setTimeout(() => {
         history.push("/signin");
       }, 2000);
     } catch (err) {
+      console.error("Registration error:", err.response?.data);
       setErrors(err.response?.data);
     }
   };
