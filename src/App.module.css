@@ -1,10 +1,15 @@
-/* Modern Reading Experience Color Palette
-Primary: Teal (#319795)
-Secondary: Coral (#F56565)
-Accents: Soft purple (#805AD5)
-Background: Off-white (#F8FAFC)
-Text: Dark gray (#1A202C)
+/* BookHub - Warmer Reading Experience Color Palette
+Primary: Deep Teal (#2D7A78)
+Secondary: Soft Terracotta (#E07A5F)
+Accents: Warm Purple (#7D5BA6)
+Background: Warm Cream (#F9F7F3)
+Text: Rich Charcoal (#2D3748)
+Borders: Soft Tan (#E6E0D4)
 */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap');
+
 
 * {
   box-sizing: border-box;
@@ -16,11 +21,20 @@ html {
   font-size: 62.5% !important;
 }
 
+/* Fonts */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libre Baskerville', serif;
+}
+
+body, p, button, input, textarea, .App {
+  font-family: 'Work Sans', sans-serif;
+}
+
 .App {
-  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
   min-height: 100vh;
-  background-color: #F8FAFC;
-  color: #1A202C;
+  background-color: #F9F7F3; 
+  color: #2D3748; 
 }
 
 .Main {
@@ -31,8 +45,8 @@ html {
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 0.8rem;
-  border: 1px solid #E2E8F0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #E6E0D4;
+  box-shadow: 0 2px 8px rgba(45, 55, 72, 0.05);
 }
 
 .FillerImage {
@@ -60,59 +74,245 @@ figure {
 *::-webkit-scrollbar {
   width: 10px;
 }
+
 *::-webkit-scrollbar-track {
-  background: #F8FAFC;
+  background: #F9F7F3;
 }
+
 *::-webkit-scrollbar-thumb {
-  background: #319795;
+  background: #2D7A78;
   border-radius: 5px;
 }
+
 *::-webkit-scrollbar-thumb:hover {
-  background: #2C7A7B;
+  background: #246664;
 }
 
 /* Form elements */
-button, 
+button,
 .Button {
-  background-color: #319795;
+  background-color: #2D7A78;
   color: white;
   border: none;
   border-radius: 0.4rem;
   padding: 0.8rem 1.6rem;
   font-size: 1.4rem;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
 button:hover,
 .Button:hover {
-  background-color: #2C7A7B;
+  background-color: #246664;
+  transform: translateY(-1px);
+}
+
+button:active,
+.Button:active {
+  transform: translateY(0);
 }
 
 /* Secondary button style */
 .ButtonSecondary {
-  background-color: #F56565;
+  background-color: #E07A5F;
   color: white;
 }
 
 .ButtonSecondary:hover {
-  background-color: #E53E3E;
+  background-color: #CB6E55;
 }
 
 /* Link styles */
 a {
-  color: #319795;
+  color: #2D7A78;
   text-decoration: none;
   transition: color 0.2s;
 }
 
 a:hover {
-  color: #2C7A7B;
-  text-decoration: underline;
+  color: #246664;
 }
 
 /* Focus styles for accessibility */
 *:focus {
-  outline: 2px solid #805AD5;
+  outline: 2px solid #7D5BA6;
   outline-offset: 2px;
+}
+
+/* Card and content elements */
+.Card {
+  background-color: #ffffff;
+  border-radius: 0.8rem;
+  border: 1px solid #E6E0D4;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.Card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(45, 55, 72, 0.1);
+}
+
+/* Form input styling */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  border: 1px solid #E6E0D4;
+  border-radius: 0.4rem;
+  padding: 1rem;
+  font-size: 1.4rem;
+  width: 100%;
+  background-color: #ffffff;
+  color: #2D3748;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+  border-color: #7D5BA6;
+  box-shadow: 0 0 0 2px rgba(125, 91, 166, 0.1);
+  outline: none;
+}
+
+/* Modal overlay - covers the entire screen */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* Welcome Modal container */
+.welcomeModal {
+  background-color: white;
+  border-radius: 0.8rem;
+  width: 100%;
+  max-width: 60rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: modalFadeIn 0.3s ease;
+  margin: 0 2rem;
+}
+
+/* Modal header section */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 2rem;
+  border-bottom: 1px solid #E6E0D4;
+}
+
+.modalTitle {
+  font-size: 2.2rem;
+  color: #2D3748;
+  margin: 0;
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 2.4rem;
+  color: #A0AEC0;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.modalClose:hover {
+  color: #E07A5F;
+}
+
+/* Modal body section */
+.modalBody {
+  padding: 2rem;
+  font-size: 1.6rem;
+  color: #4A5568;
+  line-height: 1.6;
+}
+
+.modalBody p {
+  margin-bottom: 1.6rem;
+}
+
+/* Warning text box */
+.warningText {
+  background-color: #FFF8E6;
+  border-left: 4px solid #E07A5F;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0.4rem;
+}
+
+/* Modal footer section */
+.modalFooter {
+  padding: 1.6rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #E6E0D4;
+}
+
+.modalButton {
+  background-color: #2D7A78;
+  color: white;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s;
+}
+
+.modalButton:hover {
+  background-color: #246664;
+  transform: translateY(-1px);
+}
+
+.modalButton:active {
+  transform: translateY(0);
+}
+
+/* Animation for modal appearance */
+@keyframes modalFadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .welcomeModal {
+    max-width: 90%;
+    margin: 0 1rem;
+  }
+  
+  .modalTitle {
+    font-size: 1.8rem;
+  }
+  
+  .modalBody {
+    font-size: 1.4rem;
+    padding: 1.5rem;
+  }
+  
+  .modalButton {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.4rem;
+  }
 }

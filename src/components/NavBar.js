@@ -26,11 +26,11 @@ const NavBar = () => {
 
   const addReviewIcon = (
     <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
+      className={styles.navLink}
+      activeClassName={styles.active}
       to="/reviews/create"
     >
-      <span className={styles.NavLinkContent}>
+      <span className={styles.navLinkContent}>
         <i className="far fa-plus-square"></i>Add review
       </span>
     </NavLink>
@@ -38,16 +38,16 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
-      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <span className={styles.NavLinkContent}>
+      <NavLink className={styles.navLink} to="/" onClick={handleSignOut}>
+        <span className={styles.navLinkContent}>
           <i className="fas fa-sign-out-alt"></i>Sign out
         </span>
       </NavLink>
       <NavLink
-        className={`${styles.NavLink} ${styles.ProfileLink}`}
+        className={`${styles.navLink} ${styles.profileLink}`}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <span className={`{styles.NavLinkContent} ${styles.ProfileLink}`}>
+        <span className={styles.navLinkContent}>
           <Avatar className={styles.Avatar} src={currentUser?.profile_image} text="Profile" height={40} />
         </span>
       </NavLink>
@@ -57,20 +57,20 @@ const NavBar = () => {
   const loggedOutIcons = (
     <>
       <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
+        className={`${styles.navLink} ${styles.logLink}`}
+        activeClassName={styles.active}
         to="/signin"
       >
-        <span className={styles.NavLinkContent}>
+        <span className={styles.navLinkContent}>
           <i className="fas fa-sign-in-alt"></i>Sign in
         </span>
       </NavLink>
       <NavLink
         to="/signup"
-        className={styles.NavLink}
-        activeClassName={styles.Active}
+        className={`${styles.navLink} ${styles.logLink}`}
+        activeClassName={styles.active}
       >
-        <span className={styles.NavLinkContent}>
+        <span className={styles.navLinkContent}>
           <i className="fas fa-user-plus"></i>Sign up
         </span>
       </NavLink>

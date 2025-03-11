@@ -1,4 +1,4 @@
-// import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
@@ -25,12 +25,28 @@ import NotFoundPage from './pages/NotFoundPage';
 function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
-
   // const [showModal, setShowModal] = useState(false);
-
   // const toggleModal = () => {  
   //   setShowModal(!showModal);
   // };
+
+  // State for welcome modal
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  
+  useEffect(() => {
+    // Check if this is the first visit
+    const hasVisitedBefore = localStorage.getItem('hasVisitedBookHub');
+    
+    if (!hasVisitedBefore) {
+      setShowWelcomeModal(true);
+      // Set flag in localStorage
+      localStorage.setItem('hasVisitedBookHub', 'true');
+    }
+  }, []);
+  
+  const closeWelcomeModal = () => {
+    setShowWelcomeModal(false);
+  };
 
   return (
     <div className={styles.App}>
@@ -78,12 +94,46 @@ function App() {
           <Route exact path="/openlibrary-search" component={OpenLibrarySearch} />
           <Route exact path="/nyt-reviews" component={NYTReviews} />
           <Route exact path="/about-us" component={AboutUs} />
-
           <Route component={NotFoundPage} />
         </Switch>
       </Container>
-      {/* <FloatingFooterButton onClick={toggleModal} /> 
+      {/* <FloatingFooterButton onClick={toggleModal} />
       <FooterModal show={showModal} handleClose={toggleModal} /> */}
+
+      {/* Welcome Modal */}
+      {showWelcomeModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.welcomeModal}>
+            <div className={styles.modalHeader}>
+              <h2 className={styles.modalTitle}>Welcome to BookHub!</h2>
+              <button className={styles.modalClose} onClick={closeWelcomeModal}>
+                &times;
+              </button>
+            </div>
+            <div className={styles.modalBody}>
+              <p>
+                This project was created as part of my full-stack development course and demonstrates 
+                my skills with React, Django REST Framework, and authentication workflows.
+              </p>
+              <p className={styles.warningText}>
+   ⚠️ Note: This is a portfolio demonstration only and not intended for production use. 
+  As a frontend-focused developer, I chose to prioritize the React UI components rather 
+  than rebuilding the entire backend infrastructure when migrating from Heroku/ElephantSQL. 
+  Some functionality may be limited as a result.
+</p>
+<p>
+  Feel free to explore the code structure and UI components.
+  The complete source code, along with a readme file from before the migration, is available via the GitHub project link on my portfolio website.
+</p>
+            </div>
+            <div className={styles.modalFooter}>
+              <button className={styles.modalButton} onClick={closeWelcomeModal}>
+                Explore BookHub
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

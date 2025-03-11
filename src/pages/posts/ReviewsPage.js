@@ -9,15 +9,15 @@ import NoResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
-// import BookOfTheWeek from "../../components/BookOfTheWeek"; // Commented out
-// import { fetchBookOfTheWeek } from "../../api/bookAPI"; // Commented out
+// import BookOfTheWeek from "../../components/BookOfTheWeek";
+// import { fetchBookOfTheWeek } from "../../api/bookAPI";
 import LiteraryQuote from '../../pages/LiteraryQuote';
 import ScrollToTopButton from '../../components/ScrollToTopButton'
 
 
 function ReviewsPage({ message, filter = "" }) {
   const [reviews, setReviews] = useState({ results: [], next: null });
-  // const [bookOfTheWeek, setBookOfTheWeek] = useState(null); // Commented out
+  // const [bookOfTheWeek, setBookOfTheWeek] = useState(null);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
@@ -47,7 +47,7 @@ function ReviewsPage({ message, filter = "" }) {
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchReviews();
-      // getBookOfTheWeek();  // Commented out
+      // getBookOfTheWeek();
     }, 1000);
 
     return () => {
@@ -64,20 +64,22 @@ function ReviewsPage({ message, filter = "" }) {
           </div>
           
           <div className={styles.searchContainer}>
-            <i className={`fas fa-search ${styles.searchIcon}`} />
-            <form 
-              className={styles.searchBar}
-              onSubmit={(event) => event.preventDefault()}
-            >
-              <input
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                type="text"
-                placeholder="Search reviews"
-                className={styles.searchInput}
-              />
-            </form>
-          </div>
+  <form
+    className={styles.searchForm}
+    onSubmit={(event) => event.preventDefault()}
+  >
+    <div className={styles.searchInputWrapper}>
+      <i className={`fas fa-search ${styles.searchIcon}`} />
+      <input
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        type="text"
+        placeholder="Search reviews"
+        className={styles.searchInput}
+      />
+    </div>
+  </form>
+</div>
 
           <LiteraryQuote />
           
