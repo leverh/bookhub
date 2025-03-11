@@ -81,7 +81,7 @@ const AboutUs = () => {
         </div>
         
         <div className={styles.copyright}>
-          &copy; {currentYear} Error Codes. All rights reserved.
+          &copy; {currentYear} PixelSummit. All rights reserved.
         </div>
         
         <ScrollToTopButton />
