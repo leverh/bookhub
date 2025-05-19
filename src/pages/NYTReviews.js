@@ -1,98 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { fetchNYTReviews, fetchNYTTop10 } from '../api/nytAPI';
-import styles from '../styles/NYTReviews.module.css'
-import ScrollToTopButton from '../components/ScrollToTopButton'
+import { useState, useEffect } from 'react';
+import { fetchNYTOverviewLists, fetchNYTTop10 } from '../api/nytAPI';
+import styles from '../styles/NYTReviews.module.css';
+import ScrollToTopButton from '../components/ScrollToTopButton';
 
 const NYTReviews = () => {
-    const [reviews, setReviews] = useState([]);
-    const [top10, setTop10] = useState([]);  
-    const [loading, setLoading] = useState(false);
+    const [top10, setTop10] = useState([]);
+    const [lists, setLists] = useState([]);
+    const [visibleCount, setVisibleCount] = useState(3);
     const [error, setError] = useState(null);
-    const [searchTerm, setSearchTerm] = useState(''); 
 
     useEffect(() => {
-        const fetchTop10Books = async () => {
+        const fetchData = async () => {
             try {
                 const books = await fetchNYTTop10();
                 setTop10(books);
             } catch (err) {
                 setError('Failed to fetch top 10 books.');
             }
+
+            try {
+                const overview = await fetchNYTOverviewLists();
+                setLists(overview);
+            } catch (err) {
+                setError('Failed to fetch bestseller lists.');
+            }
         };
 
-        fetchTop10Books();  // Fetch top 10 books on component mount
+        fetchData();
     }, []);
 
-    const getReviews = async () => {  
-        try {
-            setLoading(true);
-            const reviewsData = await fetchNYTReviews(searchTerm);
-
-            setReviews(reviewsData);
-            setLoading(false);
-        } catch (err) {
-            setError('Failed to fetch reviews.');
-            setLoading(false);
-        }
-    };
-
-    const handleSearch = (event) => {
-        event.preventDefault(); 
-        getReviews();
+    const showMoreLists = () => {
+        setVisibleCount(prev => prev + 3);
     };
 
     return (
         <div className={styles.pageContainer}>
             <div className={styles.contentWrapper}>
-                <section className={styles.searchSection}>
-                    <h2 className={styles.pageTitle}>New York Times Book Reviews</h2>
-                    <form onSubmit={handleSearch} className={styles.searchForm}>
-                        <div className={styles.searchInputWrapper}>
-                            <i className="fas fa-search"></i>
-                            <input
-                                type="text"
-                                value={searchTerm}
-                                onChange={e => setSearchTerm(e.target.value)}
-                                placeholder="Search for a book..."
-                                className={styles.searchInput}
-                            />
-                        </div>
-                        <button type="submit" className={styles.searchButton}>Search</button>
-                    </form>
-                </section>
-                
-                <section className={styles.resultsSection}>
-                    {loading && <div className={styles.loadingMessage}>Loading reviews...</div>}
+                <section className={styles.headerSection}>
+                    <h2 className={styles.pageTitle}>New York Times Best Sellers</h2>
                     {error && <div className={styles.errorMessage}>Error: {error}</div>}
-                    
-                    {reviews.length > 0 ? (
-                        <div className={styles.reviewsContainer}>
-                            <h3 className={styles.sectionTitle}>Search Results</h3>
-                            <ul className={styles.reviewsList}>
-                                {reviews.map((review, index) => (
-                                    <li key={index} className={styles.reviewCard}>
-                                        <h3 className={styles.bookTitle}>{review.book_title}</h3>
-                                        <p className={styles.reviewer}>By: {review.byline.slice(3)}</p>
-                                        <p className={styles.summary}>{review.summary}</p>
-                                        <a 
-                                            href={review.url} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer"
-                                            className={styles.readMoreLink}
-                                        >
-                                            Read full review
-                                            <i className="fas fa-external-link-alt"></i>
-                                        </a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ) : !loading && searchTerm && (
-                        <div className={styles.noResults}>
-                            <p>No reviews found for "{searchTerm}".</p>
-                            <p>Try searching for another book title or author.</p>
-                        </div>
-                    )}
                 </section>
 
                 <section className={styles.bestSellersSection}>
@@ -124,6 +70,50 @@ const NYTReviews = () => {
                     ) : (
                         <div className={styles.loadingBestSellers}>
                             <p>Loading best sellers...</p>
+                        </div>
+                    )}
+                </section>
+
+                <section className={styles.bestSellersSection}>
+                    <h3 className={styles.sectionTitle}>All NYT Bestseller Lists</h3>
+                    {lists.slice(0, visibleCount).map(list => (
+                        <div key={list.list_id} className={styles.listCategory}>
+                            <h4 className={styles.sectionTitle}>{list.display_name}</h4>
+                            <ul className={styles.bestSellersList}>
+                                {list.books.map((book, index) => (
+                                    <li key={book.primary_isbn13} className={styles.bestSellerCard}>
+                                        <div className={styles.bookImageContainer}>
+                                            <img src={book.book_image} alt={book.title} className={styles.bookImage} />
+                                        </div>
+                                        <div className={styles.bookInfo}>
+                                            <h4 className={styles.bookTitle}>{book.title}</h4>
+                                            <p className={styles.author}>By: {book.author}</p>
+                                            <p className={styles.description}>{book.description}</p>
+                                            <div className={styles.bookMeta}>
+                                                <span className={styles.isbn}>
+                                                    <i className="fas fa-barcode"></i> ISBN: {book.primary_isbn13}
+                                                </span>
+                                            </div>
+                                            <a
+                                                href={book.amazon_product_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.readMoreLink}
+                                            >
+                                                Buy on Amazon
+                                            </a>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+
+                    {visibleCount < lists.length && (
+                        <div className={styles.loadMoreContainer}>
+                            <button onClick={showMoreLists} className={styles.loadMoreButton}>
+                                Load More Lists
+                            </button>
                         </div>
                     )}
                 </section>

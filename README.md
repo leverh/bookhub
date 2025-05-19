@@ -1,3 +1,7 @@
+> 📘 **Final Project – Full Stack Web Development Course**
+>
+> This project was created as the final capstone for my full-stack web development course. It demonstrates proficiency in React, Django, API integration, modular CSS, and responsive UI design. The app combines real-time data from the New York Times Books API and Open Library to provide a dynamic, searchable catalog of books and bestsellers.
+
 # BookHub: A Haven for Book Lovers
 Welcome to **BookHub**, a dedicated platform for bibliophiles to connect, share, and indulge in their love for literature. Whether you're an avid reader looking for your next read, or simply someone seeking recommendations and reviews, BookHub is your one-stop destination.
 

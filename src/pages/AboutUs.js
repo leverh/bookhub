@@ -81,7 +81,7 @@ const AboutUs = () => {
         </div>
         
         <div className={styles.copyright}>
-          &copy; {currentYear} PixelSummit. All rights reserved.
+          &copy; {currentYear} <a href='https://pixelsummit.dev/' target="_blank" rel="noopener noreferrer">PixelSummit</a>. All rights reserved.
         </div>
         
         <ScrollToTopButton />

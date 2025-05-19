@@ -73,7 +73,7 @@ const OpenLibrarySearch = () => {
             <section className={styles.searchSection}>
               <form onSubmit={handleFormSubmit} className={styles.searchForm}>
                 <div className={styles.inputWrapper}>
-                  <i className="fas fa-search"></i>
+                  
                   <input 
                     type="text" 
                     className={styles.searchInput}
