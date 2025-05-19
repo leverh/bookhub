@@ -1694,8 +1694,3 @@ The following technologies were used in this project:
 * **[Stack Overflow](https://stackoverflow.com/)** - Troubleshooting and solutions.
 * **[GitHub](https://github.com/)** - Repository references and solutions.
 * **[Reddit](https://www.reddit.com/r/webdev/)** - Insights and advice.
-
-
-### Thank you's to:
-
-- Code Institute tutors: Sean, Sara, Holly, and Jason for their patience and bug fixes.
