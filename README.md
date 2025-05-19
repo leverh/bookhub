@@ -52,7 +52,7 @@ In the digital age, while there are myriad of platforms to discuss movies, music
 
 ## Connect to the App:
 
-**BookHub** can be found [here.](https://bookhub-react-app-e2e5d4f08f69.herokuapp.com/)
+**BookHub** can be found [here.](https://bookhub-lime.vercel.app/)
 
 **GitHub**:
 - Front-End code link can be found [here.](https://github.com/leverh/react-bookhub-app)
