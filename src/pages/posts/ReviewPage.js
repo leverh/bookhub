@@ -10,6 +10,7 @@ import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import styles from "../../styles/ReviewPage.module.css";
+import { demoReviews, demoComments } from "../../data/demoData";
 
 function ReviewPage() {
   const { id } = useParams();
@@ -25,11 +26,19 @@ function ReviewPage() {
           axiosReq.get(`/posts/${id}`),
           axiosReq.get(`/comments/?post=${id}`),
         ]);
-        console.log(review)
+        console.log(review);
         setReview({ results: [review] });
         setComments(comments);
       } catch (err) {
-        // console.log(err);
+        console.log('API failed, using demo data for review', id);
+        
+        // Find demo review by ID or use first one
+        const demoReview = demoReviews.results.find(r => r.id === parseInt(id)) || demoReviews.results[0];
+        setReview({ results: [demoReview] });
+        
+        // Get demo comments for this review
+        const reviewComments = demoComments[id] || { results: [] };
+        setComments(reviewComments);
       }
     };
 
@@ -60,63 +69,62 @@ function ReviewPage() {
             ...prevReview.results.slice(1),
         ],
     }));
-};
+  };
 
-  
-
-return (
-  <div className={styles.reviewPageContainer}>
-    <div className={styles.mainContent}>
-      <div className={styles.leftColumn}>
-        <div className={styles.mobileProfilesWrapper}>
-          <PopularProfiles mobile />
-        </div>
-        
-        {review && <Review {...review.results[0]} setReview={setReview} reviewPage />}
-        
-        <div className={styles.commentsSection}>
-          {currentUser ? (
-            <CommentCreateForm
-              profile_id={currentUser.profile_id}
-              profileImage={profile_image}
-              post={id}
-              setPost={setReview}
-              setComments={setComments}
-              updateCommentCount={updateCommentCount}
-            />
-          ) : comments.results.length ? (
-            <h3 className={styles.commentsHeader}>Comments</h3>
-          ) : null}
+  return (
+    <div className={styles.reviewPageContainer}>
+      <div className={styles.mainContent}>
+        <div className={styles.leftColumn}>
+          <div className={styles.mobileProfilesWrapper}>
+            <PopularProfiles mobile />
+          </div>
           
-          {comments.results.length ? (
-            <InfiniteScroll
-              children={comments.results.map((comment) => (
-                <Comment
-                  key={comment.id}
-                  {...comment}
-                  setPost={setReview}
-                  setComments={setComments}
-                  decrementCommentCount={decrementCommentCount}
-                />
-              ))}
-              dataLength={comments.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!comments.next}
-              next={() => fetchMoreData(comments, setComments)}
-            />
-          ) : currentUser ? (
-            <p className={styles.noComments}>No comments yet, but you could be the first one to comment!</p>
-          ) : (
-            <p className={styles.noComments}>No comments yet!</p>
-          )}
+          {review && <Review {...review.results[0]} setReview={setReview} reviewPage />}
+          
+          <div className={styles.commentsSection}>
+            {currentUser ? (
+              <CommentCreateForm
+                profile_id={currentUser.profile_id}
+                profileImage={profile_image}
+                post={id}
+                setPost={setReview}
+                setComments={setComments}
+                updateCommentCount={updateCommentCount}
+              />
+            ) : comments.results.length ? (
+              <h3 className={styles.commentsHeader}>Comments</h3>
+            ) : null}
+            
+            {comments.results.length ? (
+              <InfiniteScroll
+                children={comments.results.map((comment) => (
+                  <Comment
+                    key={comment.id}
+                    {...comment}
+                    setPost={setReview}
+                    setComments={setComments}
+                    decrementCommentCount={decrementCommentCount}
+                  />
+                ))}
+                dataLength={comments.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!comments.next}
+                next={() => fetchMoreData(comments, setComments)}
+              />
+            ) : currentUser ? (
+              <p className={styles.noComments}>No comments yet, but you could be the first one to comment!</p>
+            ) : (
+              <p className={styles.noComments}>No comments yet!</p>
+            )}
+          </div>
         </div>
-      </div>
-      
-      <div className={styles.rightColumn}>
-        <PopularProfiles />
+        
+        <div className={styles.rightColumn}>
+          <PopularProfiles />
+        </div>
       </div>
     </div>
-  </div>
-);}
+  );
+}
 
 export default ReviewPage;
