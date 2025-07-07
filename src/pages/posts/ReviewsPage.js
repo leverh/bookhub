@@ -16,7 +16,7 @@ import ScrollToTopButton from '../../components/ScrollToTopButton';
 import { demoReviews } from "../../data/demoData";
 
 function ReviewsPage({ message, filter = "" }) {
-  // Start with demo data immediately
+  // Start with demo data
   const [reviews, setReviews] = useState(demoReviews);
   const [usingDemoData, setUsingDemoData] = useState(true);
   const { pathname } = useLocation();
@@ -29,10 +29,8 @@ function ReviewsPage({ message, filter = "" }) {
         const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         console.log("API response:", data);
         
-        // Only replace demo data if we get valid, complete reviews
         if (data.results && data.results.length > 0) {
           const firstReview = data.results[0];
-          // Check if the review has all required fields
           const isComplete = firstReview.title && 
                            firstReview.author_name && 
                            firstReview.content && 
@@ -48,7 +46,6 @@ function ReviewsPage({ message, filter = "" }) {
             setUsingDemoData(false);
           } else {
             console.log("API data incomplete, keeping demo data");
-            // Keep demo data, just filter it for search
             const filteredDemoData = {
               ...demoReviews,
               results: demoReviews.results.filter(review => 
@@ -63,7 +60,6 @@ function ReviewsPage({ message, filter = "" }) {
           }
         } else {
           console.log("API data incomplete, keeping demo data");
-          // Keep demo data, just filter it for search
           const filteredDemoData = {
             ...demoReviews,
             results: demoReviews.results.filter(review => 
@@ -78,7 +74,6 @@ function ReviewsPage({ message, filter = "" }) {
         }
       } catch (err) {
         console.log("API failed, keeping demo data");
-        // Keep demo data, just filter it for search
         const filteredDemoData = {
           ...demoReviews,
           results: demoReviews.results.filter(review => 
@@ -93,7 +88,6 @@ function ReviewsPage({ message, filter = "" }) {
       }
     };
 
-    // Handle search filtering for demo data
     if (query !== "" && usingDemoData) {
       const filteredDemoData = {
         ...demoReviews,
@@ -108,7 +102,6 @@ function ReviewsPage({ message, filter = "" }) {
       setReviews(demoReviews);
     }
 
-    // Try to get API data in background
     const timer = setTimeout(() => {
       fetchReviews();
     }, 1000);
@@ -116,8 +109,7 @@ function ReviewsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname, usingDemoData]); // Added usingDemoData to dependencies
-
+  }, [filter, query, pathname, usingDemoData]); 
   return (
     <div className={styles.pageContainer}>
       <div className={styles.mainContent}>
@@ -149,12 +141,12 @@ function ReviewsPage({ message, filter = "" }) {
           <div className={styles.reviewsContainer}>
             {reviews.results.length ? (
               usingDemoData ? (
-                // For demo data, just map without infinite scroll since no pagination
+
                 reviews.results.map((review) => (
                   <Review key={review.id} {...review} setReviews={setReviews} />
                 ))
               ) : (
-                // For real API data, use your original infinite scroll
+
                 <InfiniteScroll
                   dataLength={reviews.results.length}
                   next={() => fetchMoreData(reviews, setReviews)}
